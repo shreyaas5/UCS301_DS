@@ -19,12 +19,12 @@ int main() {
 
     int low = 0, high = n - 1;
     int mid;
-    bool found = false;
+    int flag = 0;
 
     while(low <= high) {
         mid = (low + high) / 2;
         if(arr[mid] == target) {
-            found = true;
+            flag = 1;
             break;
         }
         else if(arr[mid] < target) {
@@ -35,7 +35,7 @@ int main() {
         }
     }
 
-    if(found) {
+    if(flag ==1) {
         cout << "Element found at position: " << mid << endl;
     } else {
         cout << "Element not found in the array." << endl;
