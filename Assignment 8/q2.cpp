@@ -1,35 +1,42 @@
 #include <iostream>
 using namespace std;
 
-struct Node {
+struct Node{
     int key;
     Node* left;
     Node* right;
-
-    Node(int k) : key(k), left(NULL), right(NULL) {}
+    
+    Node(int k) : key(k), left(NULL), right(NULL){};
 };
 
-Node* searchRec(Node* root, int key) {
-    if (!root || root->key == key) return root;
-    if (key < root->key) return searchRec(root->left, key);
-    return searchRec(root->right, key);
-}
-
-Node* searchIter(Node* root, int key) {
-    while (root && root->key != key) {
-        root = (key < root->key) ? root->left : root->right;
+Node* recursive_search(Node* root, int k){
+    if(!root) return NULL;
+    if(root->key == k) return root;
+    else if(root->key > k){
+        return recursive_search(root->left, k);
+    } else{
+        return recursive_search(root->right, k);
     }
-    return root;
 }
 
-Node* findMax(Node* root) {
-    while (root && root->right) root = root->right;
-    return root;
+Node* non_recursive_search(Node* root, int k){
+    while(root){
+        if(root->key == k) return root;
+        root = (k < root->key) ? root->left : root->right;
+    }
+    return NULL;
 }
 
-Node* findMin(Node* root) {
-    while (root && root->left) root = root->left;
-    return root;
+int max_element(Node* root){
+    if(!root) return INT_MIN;
+    while(root->right) root = root->right;
+    return root->key;
+}
+
+int min_element(Node* root){
+    if(!root) return INT_MIN;
+    while(root->left) root = root->left;
+    return root->key;
 }
 
 Node* inorderSuccessor(Node* root, Node* target) {
