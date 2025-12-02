@@ -1,30 +1,32 @@
+// Write program using functions for binary tree traversals: Pre-order, In-order and Post order using recursive approach.
+
 #include <iostream>
 using namespace std;
 
-struct Node {
+struct Node{
     int key;
     Node* left;
     Node* right;
-
+    
     Node(int k) : key(k), left(NULL), right(NULL) {}
 };
 
-void inorder(Node* root) {
-    if (!root) return;
+void inorder(Node* root){
+    if(!root) return;
     inorder(root->left);
     cout << root->key << " ";
     inorder(root->right);
 }
 
-void preorder(Node* root) {
-    if (!root) return;
+void preorder(Node* root){
+    if(!root) return;
     cout << root->key << " ";
     preorder(root->left);
     preorder(root->right);
 }
 
-void postorder(Node* root) {
-    if (!root) return;
+void postorder(Node* root){
+    if(!root) return;
     postorder(root->left);
     postorder(root->right);
     cout << root->key << " ";
